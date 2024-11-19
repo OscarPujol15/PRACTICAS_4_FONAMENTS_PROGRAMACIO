@@ -32,15 +32,16 @@ public class FYClassifier {
         
         System.exit(0);
     }
-
-    private static double readUEEMark (JConsole console)
+ private static double readUEEMark (JConsole console)
     {
         double result;
 
         console.print("Please enter UEE mark (in [5, 10]) ");
         console.setForegroundColor(Color.GREEN);
         
-        /* COMPLETE */
+        do {
+         result = console.readDouble();	
+        }while (result<= 5 && result >= 10);
         
         console.resetColor ();
         return result;
@@ -52,21 +53,40 @@ public class FYClassifier {
         console.print("Please enter number of "+what+": ");
         console.setForegroundColor(Color.GREEN);
         result = console.readInt();
-    
-        /* COMPLETE */
+        while (result<0) {
+        	console.println("That number must be positive");
+        	result = console.readInt();
+        }
+        return result;
     }
 
-    private static char classifyUEEMark (double ueeMark)
-    {
-        char ueeType;
-
-        /* COMPLETE */
+    private static char classifyUEEMark (double ueeMark){
+        
+    	char ueeType='X';
+        
+        if (ueeMark>=6.5){
+        	ueeType = 'L';
+        }
+        	else if (ueeMark>6.5 && ueeMark<8) {
+        		ueeType = 'N';
+        	}
+        		else if (ueeMark>=8 && ueeMark<=9.5){
+        			ueeType = 'H';
+        		}
+        			else if (ueeMark>9.5 && ueeMark<=10) {
+        				ueeType = 'V';
+        			}
+        return ueeType;
     }
 
     /* COMPLETE: write here procedure ClassifyDoubleDIndex.
        Parameter, only one, is int (the doubleD index).
        Return type is string
     */
+
+    private static void ClassifyDoubleDIndex (int doubleD) {
+    	
+    }
 
     private static char determineCategory (String indexType, char ueeType)
     {
