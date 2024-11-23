@@ -35,32 +35,51 @@ public class FYClassifier {
         System.exit(0);
     }
 
-	 private static double readUEEMark (JConsole console)
-	    {
-	        double result;
+		private static double readUEEMark(JConsole console)
+		{
+		    double result;
+		    console.print("Please enter UEE mark (in [5, 10]) ");
+		    console.setForegroundColor(Color.GREEN);
+	
+		    result = console.readDouble();
+	
+		    while (result < 5 || result > 10) {
+		        console.setForegroundColor(Color.RED);
+		        console.println("Incorrect value. Must be in [5, 10]");
+		        console.resetColor();
+	
+		        console.print("Please enter UEE mark (in [5, 10]) ");
+		        console.setForegroundColor(Color.GREEN);
+		        result = console.readDouble();
+		    }
+	
+		    console.resetColor();
+		    return result;
+		}
 
-	        console.print("Please enter UEE mark (in [5, 10]) ");
-	        console.setForegroundColor(Color.GREEN);
-	        
-	        do {
-	         result = console.readDouble();	
-	        }while (result<= 5 && result >= 10);
-	        
-	        console.resetColor ();
-	        return result;
-	    }
 
-	    private static int readNumberOf (String what,  JConsole console) {
-	        int result;
-	        console.print("Please enter number of "+what+": ");
-	        console.setForegroundColor(Color.GREEN);
-	        result = console.readInt();
-	        while (result<0) {
-	        	console.println("That number must be positive");
-	        	result = console.readInt();
-	        }
-	        return result;
-	    }
+
+		private static int readNumberOf(String what, JConsole console) {
+		    int result;
+		    console.print("Please enter number of " + what + ": ");
+		    console.setForegroundColor(Color.GREEN);
+
+		    result = console.readInt();
+
+		    while (result < 0) {
+		        console.setForegroundColor(Color.RED);
+		        console.println("Incorrect value. Must be positive");
+		        console.resetColor();
+
+		        console.print("Please enter number of " + what + ": ");
+		        console.setForegroundColor(Color.GREEN);
+		        result = console.readInt();
+		    }
+
+		    console.resetColor();
+		    return result;
+		}
+
 
 	    private static char classifyUEEMark (double ueeMark){
 	        
@@ -174,7 +193,7 @@ public class FYClassifier {
     	}
     	
     	else if(category == 'D'){
-    		advice = "You may have the potential for success but you will have to work hard in a daily-basis";
+    		advice = "You may have the potential for success but you will have to work hard in a daily-basis.";
     		return advice;
     	}
     	
